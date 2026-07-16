@@ -111,7 +111,7 @@ export const createComment = async (data: NewComment) => {
 };
 
 export const deleteComment = async (id: string) => {
-     const existingComment = await getCommentsById(id);
+     const existingComment = await getCommentById(id);
   if (!existingComment) {
     throw new Error(`Comment with id ${id} not found`);
   }
@@ -122,7 +122,7 @@ export const deleteComment = async (id: string) => {
   return comment;
 };
 
-export const getCommentsById = async (id: string) => {
+export const getCommentById = async (id: string) => {
   return db.query.comments.findFirst({
     where: eq(comments.id, id),
     with: { user: true },
