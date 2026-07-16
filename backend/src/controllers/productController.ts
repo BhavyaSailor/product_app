@@ -100,6 +100,8 @@ export const updateProduct = async (req: Request, res: Response) => {
       description,
       imageUrl,
     });
+
+    res.status(200).json(product);
   } catch (error) {
     console.error("Error updating Product");
     res.status(500).json({ error: "Failed to update Prodcut" });
