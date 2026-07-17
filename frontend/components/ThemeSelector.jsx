@@ -18,6 +18,9 @@ const THEMES = [
   "aqua",
   "lofi",
   "pastel",
+  "caramellatte",
+  "abyss",
+  "silk",
   "fantasy",
   "wireframe",
   "black",
@@ -51,7 +54,12 @@ function ThemeSelector() {
 
   return (
     <div className="dropdown dropdown-end">
-      <div tabIndex={0} role="button" className="btn btn-ghost btn-sm gap-1">
+      <div
+        tabIndex={0}
+        role="button"
+        className="btn btn-ghost btn-sm gap-1"
+        aria-label="Select theme"
+      >
         <PaletteIcon className="size-4" />
         <span className="hidden sm:inline">Theme</span>
       </div>

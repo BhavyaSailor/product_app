@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import HomePage from "../pages/HomePage";
 import ProductPage from "../pages/ProductPage";
 import Profile from "../pages/Profile";
-import CreatePage from "../pages/createPage";
+import CreatePage from "../pages/CreatePage";
 import EditPage from "../pages/EditPage";
 
 function App() {
