@@ -1,13 +1,15 @@
-import React from "react";
-import { useAuth } from "@clerk/react";
+import { useAuth } from "@clerk/clerk-react";
 import { useEffect } from "react";
 import api from "../lib/axios";
-import { config } from "dotenv";
 
-function UseAuthReq() {
+let isInterceptorRegistered = false;
+
+function useAuthReq() {
   const { isSignedIn, getToken, isLoaded } = useAuth();
-
   useEffect(() => {
+    if (isInterceptorRegistered) return;
+    isInterceptorRegistered = true;
+
     const interceptor = api.interceptors.request.use(async (config) => {
       if (isSignedIn) {
         const token = await getToken();
@@ -18,10 +20,13 @@ function UseAuthReq() {
       return config;
     });
 
-    return () => api.interceptors.request.eject(interceptor);
+    return () => {
+      api.interceptors.request.eject(interceptor);
+      isInterceptorRegistered = false;
+    };
   }, [isSignedIn, getToken]);
 
   return { isSignedIn, isClerkLoaded: isLoaded };
 }
 
-export default UseAuthReq;
+export default useAuthReq;
