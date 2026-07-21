@@ -1,12 +1,20 @@
 import { Route, Routes } from "react-router";
-import Navbar from "../components/Navbar";
-import HomePage from "../pages/HomePage";
-import ProductPage from "../pages/ProductPage";
-import Profile from "../pages/Profile";
-import CreatePage from "../pages/CreatePage";
-import EditPage from "../pages/EditPage";
+import Navbar from "./components/Navbar";
+import HomePage from "./pages/HomePage";
+import ProductPage from "./pages/ProductPage";
+import Profile from "./pages/Profile";
+import CreatePage from "./pages/CreatePage";
+import EditPage from "./pages/EditPage";
+import useAuthReq from "./hooks/useAuthReq";
+import useUserSync from "./hooks/useUserSync";
+
 
 function App() {
+  const {isClerkLoaded, isSIgnedIn} = useAuthReq()
+  useUserSync()
+
+  if(!isClerkLoaded) return null
+
   return (
     <div className="min-h-screen bg-base-100">
       <Navbar />
